@@ -265,3 +265,13 @@ fn alignment() {
 		assert_eq!(tail.len(), 6);
 	}
 }
+
+#[test]
+fn pointer_offset() {
+	let data = [0u16; 2];
+	let bits = data.view_bits::<Msb0>();
+
+	let a = &bits[10 .. 11];
+	let b = &bits[20 .. 21];
+	assert_eq!(a.offset_from(b), 10);
+}
